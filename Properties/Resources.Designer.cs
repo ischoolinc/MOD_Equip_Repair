@@ -159,5 +159,15 @@ namespace Ischool.Equip_Repair.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   查詢類型 System.Byte[] 的當地語系化資源。
+        /// </summary>
+        internal static byte[] 統計申報案件樣板 {
+            get {
+                object obj = ResourceManager.GetObject("統計申報案件樣板", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
     }
 }

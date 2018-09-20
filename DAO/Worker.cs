@@ -14,6 +14,34 @@ namespace Ischool.Equip_Repair.DAO
         private static QueryHelper _qh = new QueryHelper();
         private static UpdateHelper _up = new UpdateHelper();
 
+        public static DataTable GetCaseWorker(string caseID)
+        {
+            string sql = string.Format(@"
+SELECT
+    worker.uid
+    , CASE WHEN case_belong.uid IS NOT NULL THEN true
+        ELSE false
+        END AS 指定
+    , teacher.teacher_name
+    , worker.account
+FROM
+    $ischool.equip_repair.worker AS worker
+    LEFT OUTER JOIN (
+        SELECT 
+            * 
+        FROM
+            $ischool.equip_repair.case_belong
+        WHERE
+            ref_case_id = {0}
+    ) AS case_belong
+        ON case_belong.ref_worker_id = worker.uid
+    LEFT OUTER JOIN teacher
+        ON teacher.id = worker.ref_teacher_id
+            ", caseID);
+
+            return _qh.Select(sql);
+        }
+
         /// <summary>
         /// 取得維修員資料
         /// </summary>

@@ -111,7 +111,7 @@ namespace Ischool.Equip_Repair
                 else
                 {
                     frmPlace form = new frmPlace(FormMode.Add, null, parentID, null, level);
-                    form.Text = EnumDescription.Get(typeof(FormMode), FormMode.Add.ToString());
+                    form.Text = string.Format("{0}位置", EnumDescription.Get(typeof(FormMode), FormMode.Add.ToString()));
                     form.FormClosed += delegate
                     {
                         if (form.DialogResult == DialogResult.Yes)
@@ -134,7 +134,7 @@ namespace Ischool.Equip_Repair
                 string placeName = treeView1.SelectedNode.Text;
 
                 frmPlace form = new frmPlace(FormMode.Update, placeName, parentID, placeID, level);
-                form.Text = EnumDescription.Get(typeof(FormMode), FormMode.Update.ToString());
+                form.Text = string.Format("{0}位置", EnumDescription.Get(typeof(FormMode), FormMode.Update.ToString()));
                 form.FormClosed += delegate
                 {
                     if (form.DialogResult == DialogResult.Yes)
@@ -168,12 +168,6 @@ namespace Ischool.Equip_Repair
                     }
                 }
             }
-        }
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-
-
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -213,6 +207,14 @@ namespace Ischool.Equip_Repair
                 }
                 this.ResumeLayout();
             }
+            if (dataGridViewX1.SelectedRows.Count > 0 )
+            {
+                ReloadDataGridView2();
+            }
+            else
+            {
+                dataGridViewX2.Rows.Clear();
+            }
         }
 
         private void btnAddEquip_Click(object sender, EventArgs e)
@@ -223,7 +225,7 @@ namespace Ischool.Equip_Repair
                 string placeName = treeView1.SelectedNode.Text;
 
                 frmEquip form = new frmEquip(FormMode.Add, placeID, placeName, null, null, null);
-                form.Text = EnumDescription.Get(typeof(FormMode), FormMode.Add.ToString());
+                form.Text = string.Format("{0}設施", EnumDescription.Get(typeof(FormMode), FormMode.Add.ToString()));
                 form.FormClosed += delegate
                 {
                     if (form.DialogResult == DialogResult.Yes)
@@ -248,7 +250,7 @@ namespace Ischool.Equip_Repair
                     string propertyNo = "" + dataGridViewX1.SelectedRows[0].Cells[2].Value;
 
                     frmEquip form = new frmEquip(FormMode.Update, placeID, placeName, equipID, equipname, propertyNo);
-                    form.Text = EnumDescription.Get(typeof(FormMode), FormMode.Update.ToString());
+                    form.Text = string.Format("{0}設施", EnumDescription.Get(typeof(FormMode), FormMode.Update.ToString()));
                     form.FormClosed += delegate
                     {
                         if (form.DialogResult == DialogResult.Yes)
@@ -288,11 +290,10 @@ namespace Ischool.Equip_Repair
             }
         }
 
-        private void dataGridViewX1_SelectionChanged(object sender, EventArgs e)
+        private void dataGridViewX1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             ReloadDataGridView2();
         }
-
 
         #endregion
 
@@ -328,8 +329,72 @@ namespace Ischool.Equip_Repair
             }
         }
 
-        #endregion
+        private void btnAddReason_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.SelectedRows[0].Index > -1)
+            {
+                string equipID = "" + dataGridViewX1.SelectedRows[0].Tag;
+                string equipName = "" + dataGridViewX1.SelectedRows[0].Cells[1].Value;
+                frmBrokenReason form = new frmBrokenReason(FormMode.Add, equipID, equipName,null,null);
+                form.Text = string.Format("{0}損壞原因",EnumDescription.Get(typeof(FormMode),FormMode.Add.ToString()));
+                form.FormClosed += delegate
+                {
+                    if (form.DialogResult == DialogResult.Yes)
+                    {
+                        ReloadDataGridView2();
+                    }
+                };
+                form.ShowDialog();
+            }
+        }
 
+        private void btnUpdateReason_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewX2.SelectedRows.Count > 0 && dataGridViewX2.SelectedRows[0].Index > -1)
+            {
+                string equipID = "" + dataGridViewX1.SelectedRows[0].Tag;
+                string equipName = "" + dataGridViewX1.SelectedRows[0].Cells[1].Value;
+                string reasonID = "" + dataGridViewX2.SelectedRows[0].Tag;
+                string reason = "" + dataGridViewX2.SelectedRows[0].Cells[1].Value;
+                frmBrokenReason form = new frmBrokenReason(FormMode.Update, equipID, equipName, reasonID, reason);
+                form.Text = string.Format("{0}損壞原因", EnumDescription.Get(typeof(FormMode), FormMode.Update.ToString()));
+                form.FormClosed += delegate
+                {
+                    if (form.DialogResult == DialogResult.Yes)
+                    {
+                        ReloadDataGridView2();
+                    }
+                };
+                form.ShowDialog();
+            }
+        }
+
+        private void btnDeleteReason_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewX2.SelectedRows.Count > 0 && dataGridViewX2.SelectedRows[0].Index > -1)
+            {
+                string reason = "" + dataGridViewX2.SelectedRows[0].Cells[1].Value;
+
+                DialogResult result = MsgBox.Show(string.Format("確定刪除「{0}」損壞原因?", reason),"提醒",MessageBoxButtons.YesNo);
+
+                if (result == DialogResult.Yes)
+                {
+                    try
+                    {
+                        string reasonID = "" + dataGridViewX2.SelectedRows[0].Tag;
+                        DAO.BrokenReason.DeleteBrokenReason(reasonID);
+                        MsgBox.Show("資料刪除成功!");
+                        ReloadDataGridView2();
+                    }
+                    catch(Exception ex)
+                    {
+                        MsgBox.Show(ex.Message);
+                    }
+                }
+            }
+        }
+
+        #endregion
 
     }
 }

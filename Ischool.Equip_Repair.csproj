@@ -34,6 +34,7 @@
     <Compile Include="DAO\Actor.cs" />
     <Compile Include="DAO\Admin.cs" />
     <Compile Include="DAO\BrokenReason.cs" />
+    <Compile Include="DAO\Case.cs" />
     <Compile Include="DAO\Equip.cs" />
     <Compile Include="DAO\Place.cs" />
     <Compile Include="DAO\Role.cs" />
@@ -63,6 +64,60 @@
     <Compile Include="Ribbon\frmAdmin\frmAdmin.Designer.cs">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCancelMergeCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCancelMergeCase.Designer.cs">
+      <DependentUpon>frmCancelMergeCase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCaseOpenOrClose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCaseOpenOrClose.Designer.cs">
+      <DependentUpon>frmCaseOpenOrClose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCaseManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCaseManager.Designer.cs">
+      <DependentUpon>frmCaseManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCaseDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmCaseDetail.Designer.cs">
+      <DependentUpon>frmCaseDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmMergeCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmMergeCase.Designer.cs">
+      <DependentUpon>frmMergeCase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmSetCaseWorker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmSetCaseWorker.Designer.cs">
+      <DependentUpon>frmSetCaseWorker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmSetDeadline.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmSetDeadline.Designer.cs">
+      <DependentUpon>frmSetDeadline.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmSetRepairStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmCaseManager\frmSetRepairStatus.Designer.cs">
+      <DependentUpon>frmSetRepairStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmEquipManager\frmBrokenReason.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmEquipManager\frmBrokenReason.Designer.cs">
+      <DependentUpon>frmBrokenReason.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon\frmEquipManager\frmEquip.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +136,12 @@
     <Compile Include="Ribbon\frmEquipManager\frmPlace.Designer.cs">
       <DependentUpon>frmPlace.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ribbon\frmSumCaseReport\frmSumCase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmSumCaseReport\frmSumCase.Designer.cs">
+      <DependentUpon>frmSumCase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Ribbon\frmWorker\frmAddWorker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +157,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Reference Include="Aspose.Cells_201402">
+      <HintPath>Library\Aspose.Cells_201402.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="CefSharp.WinForms, Version=57.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Library\CefSharp.WinForms.dll</HintPath>
@@ -182,6 +247,7 @@
     <None Include="Resources\area_chart_config_64.png" />
     <None Include="Resources\foreign_language_config_64.png" />
     <None Include="Resources\Report.png" />
+    <None Include="Resources\統計申報案件樣板.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -194,6 +260,33 @@
     <EmbeddedResource Include="Ribbon\frmAdmin\frmAdmin.resx">
       <DependentUpon>frmAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmCancelMergeCase.resx">
+      <DependentUpon>frmCancelMergeCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmCaseOpenOrClose.resx">
+      <DependentUpon>frmCaseOpenOrClose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmCaseManager.resx">
+      <DependentUpon>frmCaseManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmCaseDetail.resx">
+      <DependentUpon>frmCaseDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmMergeCase.resx">
+      <DependentUpon>frmMergeCase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmSetCaseWorker.resx">
+      <DependentUpon>frmSetCaseWorker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmSetDeadline.resx">
+      <DependentUpon>frmSetDeadline.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmCaseManager\frmSetRepairStatus.resx">
+      <DependentUpon>frmSetRepairStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmEquipManager\frmBrokenReason.resx">
+      <DependentUpon>frmBrokenReason.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\frmEquipManager\frmEquip.resx">
       <DependentUpon>frmEquip.cs</DependentUpon>
     </EmbeddedResource>
@@ -202,6 +295,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\frmEquipManager\frmPlace.resx">
       <DependentUpon>frmPlace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmSumCaseReport\frmSumCase.resx">
+      <DependentUpon>frmSumCase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\frmWorker\frmAddWorker.resx">
       <DependentUpon>frmAddWorker.cs</DependentUpon>

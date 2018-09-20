@@ -50,6 +50,7 @@ namespace Ischool.Equip_Repair
         /// </summary>
         public static string _workerPermission = @"
 <Permissions>
+<Feature Code=""4D8E9592-9599-47D9-879B-B59E0D852408"" Permission=""Execute""/>
 </Permissions>
 "; 
         #endregion
@@ -109,7 +110,7 @@ namespace Ischool.Equip_Repair
                     MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["報表"]["統計申報案件"].Enable = Permissions.統計申報案件權限;
                     MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["報表"]["統計申報案件"].Click += delegate
                     {
-
+                        (new frmSumCase()).ShowDialog();
                     };
                 }
                 #endregion
@@ -119,11 +120,10 @@ namespace Ischool.Equip_Repair
                     MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["管理申報案件"].Enable = Permissions.管理申報案件權限;
                     MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["管理申報案件"].Click += delegate
                     {
-
+                        (new frmCaseManager()).ShowDialog();
                     };
                 }
                 #endregion
-
 
                 #region 管理權限
                 {

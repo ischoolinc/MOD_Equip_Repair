@@ -11,6 +11,7 @@ namespace Ischool.Equip_Repair.DAO
     class Actor
     {
         private static string _userAccount;
+        private static bool _isAdmin;
 
         private static QueryHelper _qh = new QueryHelper();
 
@@ -31,11 +32,29 @@ namespace Ischool.Equip_Repair.DAO
         private Actor()
         {
             _userAccount = FISCA.Authentication.DSAServices.UserAccount.Replace("'", "''");
+
+            string sql = string.Format(@"
+SELECT
+    *
+FROM
+    $ischool.equip_repair.admin
+WHERE
+    account = '{0}'
+            ", _userAccount);
+
+
+
+            _isAdmin = _qh.Select(sql).Rows.Count > 0;
         }
 
         public string GetUserAccount()
         {
             return _userAccount;
+        }
+
+        public bool IsAdmin()
+        {
+            return _isAdmin;
         }
 
         public string GetLoginIDByAccount(string account)
