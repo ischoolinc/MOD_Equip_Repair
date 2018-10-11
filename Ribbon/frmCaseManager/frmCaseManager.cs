@@ -246,7 +246,7 @@ namespace Ischool.Equip_Repair
             if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.SelectedRows[0].Index > -1)
             {
                 string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
-                string deadline = "" + dataGridViewX1.SelectedRows[0].Cells[4].Value;
+                string deadline = "" + dataGridViewX1.SelectedRows[0].Cells[5].Value;
 
                 frmSetDeadline form = new frmSetDeadline(caseID, deadline);
                 form.FormClosed += delegate
@@ -306,7 +306,7 @@ namespace Ischool.Equip_Repair
             if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
             {
                 string caseID = "" + ((DataRow)dataGridViewX1.SelectedRows[0].Tag)["uid"];
-                List<DataRow> listData = (List<DataRow>)dataGridViewX1.SelectedRows[0].Cells[3].Tag;
+                List<DataRow> listData = (List<DataRow>)dataGridViewX1.SelectedRows[0].Cells[4].Tag;
 
                 frmCancelMergeCase form = new frmCancelMergeCase(caseID, listData);
                 form.FormClosed += delegate
