@@ -83,6 +83,16 @@ namespace Ischool.Equip_Repair.Properties {
         /// <summary>
         ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
         /// </summary>
+        internal static System.Drawing.Bitmap clipboard_zoom_64 {
+            get {
+                object obj = ResourceManager.GetObject("clipboard_zoom_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
         internal static System.Drawing.Bitmap electricity_config_64 {
             get {
                 object obj = ResourceManager.GetObject("electricity_config_64", resourceCulture);

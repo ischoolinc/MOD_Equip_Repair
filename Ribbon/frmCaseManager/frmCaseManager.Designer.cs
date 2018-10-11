@@ -28,19 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupPanel1 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.dtEnd = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.dtStart = new DevComponents.Editors.DateTimeAdv.DateTimeInput();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.cbxProgress = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.cbxStatus = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
             this.btnSearch = new DevComponents.DotNetBar.ButtonX();
             this.dataGridViewX1 = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,7 +60,6 @@
             this.btnMerge = new DevComponents.DotNetBar.ButtonX();
             this.btnMergeCase = new DevComponents.DotNetBar.ButtonItem();
             this.btnCancelMerge = new DevComponents.DotNetBar.ButtonItem();
-            this.checkBoxX1 = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.btnDoCase = new DevComponents.DotNetBar.ButtonX();
             this.btnCaseClose = new DevComponents.DotNetBar.ButtonItem();
             this.btnCaseOpen = new DevComponents.DotNetBar.ButtonItem();
@@ -112,6 +115,24 @@
             this.groupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.groupPanel1.TabIndex = 0;
             this.groupPanel1.Text = "案件申請日期";
+            // 
+            // checkBoxX1
+            // 
+            // 
+            // 
+            // 
+            this.checkBoxX1.BackgroundStyle.Class = "";
+            this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.checkBoxX1.Checked = true;
+            this.checkBoxX1.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxX1.CheckValue = "Y";
+            this.checkBoxX1.Location = new System.Drawing.Point(14, 7);
+            this.checkBoxX1.Name = "checkBoxX1";
+            this.checkBoxX1.Size = new System.Drawing.Size(127, 23);
+            this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.checkBoxX1.TabIndex = 5;
+            this.checkBoxX1.Text = "搜尋日期區間";
+            this.checkBoxX1.CheckedChanged += new System.EventHandler(this.checkBoxX1_CheckedChanged);
             // 
             // dtEnd
             // 
@@ -246,6 +267,8 @@
             this.groupPanel2.BackColor = System.Drawing.Color.Transparent;
             this.groupPanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.groupPanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
+            this.groupPanel2.Controls.Add(this.cbxProgress);
+            this.groupPanel2.Controls.Add(this.labelX1);
             this.groupPanel2.Controls.Add(this.cbxStatus);
             this.groupPanel2.Controls.Add(this.labelX4);
             this.groupPanel2.Location = new System.Drawing.Point(289, 12);
@@ -284,6 +307,32 @@
             this.groupPanel2.TabIndex = 1;
             this.groupPanel2.Text = "案件狀態";
             // 
+            // cbxProgress
+            // 
+            this.cbxProgress.DisplayMember = "Text";
+            this.cbxProgress.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cbxProgress.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxProgress.FormattingEnabled = true;
+            this.cbxProgress.ItemHeight = 19;
+            this.cbxProgress.Location = new System.Drawing.Point(94, 45);
+            this.cbxProgress.Name = "cbxProgress";
+            this.cbxProgress.Size = new System.Drawing.Size(127, 25);
+            this.cbxProgress.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.cbxProgress.TabIndex = 3;
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.Class = "";
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(26, 46);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(62, 23);
+            this.labelX1.TabIndex = 2;
+            this.labelX1.Text = "維修進度";
+            // 
             // cbxStatus
             // 
             this.cbxStatus.DisplayMember = "Text";
@@ -291,7 +340,7 @@
             this.cbxStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxStatus.FormattingEnabled = true;
             this.cbxStatus.ItemHeight = 19;
-            this.cbxStatus.Location = new System.Drawing.Point(84, 16);
+            this.cbxStatus.Location = new System.Drawing.Point(94, 9);
             this.cbxStatus.Name = "cbxStatus";
             this.cbxStatus.Size = new System.Drawing.Size(127, 25);
             this.cbxStatus.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -305,11 +354,11 @@
             // 
             this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX4.Location = new System.Drawing.Point(24, 16);
+            this.labelX4.Location = new System.Drawing.Point(26, 10);
             this.labelX4.Name = "labelX4";
-            this.labelX4.Size = new System.Drawing.Size(54, 23);
+            this.labelX4.Size = new System.Drawing.Size(62, 23);
             this.labelX4.TabIndex = 0;
-            this.labelX4.Text = "狀態";
+            this.labelX4.Text = "工單狀態";
             // 
             // btnSearch
             // 
@@ -338,6 +387,7 @@
             this.dataGridViewX1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
+            this.Column10,
             this.Column3,
             this.Column4,
             this.Column5,
@@ -345,17 +395,19 @@
             this.Column6,
             this.Column7,
             this.Column8});
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewX1.DefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridViewX1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dataGridViewX1.Location = new System.Drawing.Point(12, 152);
+            this.dataGridViewX1.MultiSelect = false;
             this.dataGridViewX1.Name = "dataGridViewX1";
+            this.dataGridViewX1.ReadOnly = true;
             this.dataGridViewX1.RowTemplate.Height = 24;
             this.dataGridViewX1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewX1.Size = new System.Drawing.Size(994, 366);
@@ -364,49 +416,68 @@
             // 
             // Column1
             // 
+            this.Column1.Frozen = true;
             this.Column1.HeaderText = "工單編號";
             this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
             // Column2
             // 
-            this.Column2.HeaderText = "狀態";
+            this.Column2.Frozen = true;
+            this.Column2.HeaderText = "工單狀態";
             this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.Frozen = true;
+            this.Column10.HeaderText = "維修進度";
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
             // 
             // Column3
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.Column3.HeaderText = "維修者";
             this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 180;
             // 
             // Column4
             // 
             this.Column4.HeaderText = "合併工單";
             this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // Column5
             // 
             this.Column5.HeaderText = "完工期限";
             this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
             // Column9
             // 
             this.Column9.HeaderText = "位置";
             this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
             // 
             // Column6
             // 
             this.Column6.HeaderText = "設施名稱";
             this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
             // 
             // Column7
             // 
             this.Column7.HeaderText = "申請者";
             this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
             // 
             // Column8
             // 
             this.Column8.HeaderText = "申請時間";
             this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
             // 
             // btnLeave
             // 
@@ -493,24 +564,6 @@
             this.btnCancelMerge.Text = "取消合併";
             this.btnCancelMerge.Click += new System.EventHandler(this.btnCancelMerge_Click);
             // 
-            // checkBoxX1
-            // 
-            // 
-            // 
-            // 
-            this.checkBoxX1.BackgroundStyle.Class = "";
-            this.checkBoxX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.checkBoxX1.Checked = true;
-            this.checkBoxX1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBoxX1.CheckValue = "Y";
-            this.checkBoxX1.Location = new System.Drawing.Point(14, 7);
-            this.checkBoxX1.Name = "checkBoxX1";
-            this.checkBoxX1.Size = new System.Drawing.Size(127, 23);
-            this.checkBoxX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.checkBoxX1.TabIndex = 5;
-            this.checkBoxX1.Text = "搜尋日期區間";
-            this.checkBoxX1.CheckedChanged += new System.EventHandler(this.checkBoxX1_CheckedChanged);
-            // 
             // btnDoCase
             // 
             this.btnDoCase.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
@@ -547,9 +600,9 @@
             this.Controls.Add(this.btnMerge);
             this.Controls.Add(this.btnSetCase);
             this.Controls.Add(this.btnRepairStatus);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnLeave);
             this.Controls.Add(this.dataGridViewX1);
-            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.groupPanel2);
             this.Controls.Add(this.groupPanel1);
             this.DoubleBuffered = true;
@@ -585,8 +638,13 @@
         private DevComponents.DotNetBar.ButtonX btnMerge;
         private DevComponents.DotNetBar.ButtonItem btnMergeCase;
         private DevComponents.DotNetBar.ButtonItem btnCancelMerge;
+        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX1;
+        private DevComponents.DotNetBar.ButtonX btnDoCase;
+        private DevComponents.DotNetBar.ButtonItem btnCaseClose;
+        private DevComponents.DotNetBar.ButtonItem btnCaseOpen;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
@@ -594,9 +652,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private DevComponents.DotNetBar.Controls.CheckBoxX checkBoxX1;
-        private DevComponents.DotNetBar.ButtonX btnDoCase;
-        private DevComponents.DotNetBar.ButtonItem btnCaseClose;
-        private DevComponents.DotNetBar.ButtonItem btnCaseOpen;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx cbxProgress;
+        private DevComponents.DotNetBar.LabelX labelX1;
     }
 }

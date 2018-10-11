@@ -32,9 +32,10 @@ WHERE
             return _qh.Select(sql);
         }
 
-        public static DataTable GetCaseDataByCondition(string startDate,string endDate,bool isClose)
+        public static DataTable GetCaseDataByCondition(string startDate,string endDate,bool isClose,string progress)
         {
             string sql = "";
+
             if (string.IsNullOrEmpty(startDate))
             {
                 sql = string.Format(@"
@@ -72,6 +73,11 @@ WHERE
     AND DATE_TRUNC('day',rp_case.apply_date) <= '{1}'::TIMESTAMP
     AND rp_case.is_close = {2}::BOOLEAN
                 ", startDate, endDate, isClose);
+            }
+
+            if (progress != "--全部--")
+            {
+                sql += string.Format("AND rp_case.fix_status = '{0}'",progress);
             }
 
             return _qh.Select(sql);

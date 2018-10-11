@@ -17,7 +17,7 @@ namespace Ischool.Equip_Repair
         {
             this.Group = "設施報修";
 
-            this._browser = new ChromiumWebBrowser("https://sites.google.com/ischool.com.tw/neat-competition/%E9%A6%96%E9%A0%81");
+            this._browser = new ChromiumWebBrowser("https://sites.google.com/ischool.com.tw/equipment-repair/%E9%A6%96%E9%A0%81");
             this._browser.Dock = DockStyle.Fill;
             ContentPanePanel.Controls.Add(this._browser);
 

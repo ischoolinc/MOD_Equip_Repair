@@ -35,14 +35,15 @@ namespace Ischool.Equip_Repair.DAO
 
             string sql = string.Format(@"
 SELECT
-    *
+    _login.*
 FROM
-    $ischool.equip_repair.admin
+    _login
+    LEFT OUTER JOIN _lr_belong
+        ON _login.id = _lr_belong._login_id
 WHERE
-    account = '{0}'
-            ", _userAccount);
-
-
+    _login.login_name = '{0}'
+    AND _lr_belong._role_id = {1}
+            ", _userAccount,Program._adminRoleID);
 
             _isAdmin = _qh.Select(sql).Rows.Count > 0;
         }

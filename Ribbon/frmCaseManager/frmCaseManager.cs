@@ -13,8 +13,6 @@ namespace Ischool.Equip_Repair
 {
     public partial class frmCaseManager : BaseForm
     {
-        private bool _isAdmin;
-
         public frmCaseManager()
         {
             InitializeComponent();
@@ -22,6 +20,7 @@ namespace Ischool.Equip_Repair
 
         private void frmCaseManager_Load(object sender, EventArgs e)
         {
+
             #region Init dateTime
             {
                 dtStart.Value = DateTime.Now.AddDays(-7);
@@ -43,13 +42,34 @@ namespace Ischool.Equip_Repair
                 ob2.IsClose = false;
                 cbxStatus.Items.Add(ob2);
 
-                cbxStatus.SelectedIndex = 0;
+                cbxStatus.SelectedIndex = 1;
                 cbxStatus.DisplayMember = "Name";
                 cbxStatus.ValueMember = "IsClose";
             }
             #endregion
 
-            _isAdmin = DAO.Actor.Instance.IsAdmin();
+            #region Init cbxProgress
+            {
+                cbxProgress.Items.Add("--全部--");
+                cbxProgress.Items.Add("未處理");
+                cbxProgress.Items.Add("已維修");
+                cbxProgress.Items.Add("代料中");
+                cbxProgress.Items.Add("待廠商維修中");
+                cbxProgress.Items.Add("校內自行處理");
+                
+
+                cbxProgress.SelectedIndex = 0;
+            }
+            #endregion
+
+            ReloadDataGridView();
+
+            if (!DAO.Actor.Instance.IsAdmin())
+            {
+                btnSetCase.Enabled = false;
+                btnMerge.Enabled = false;
+                btnDoCase.Enabled = false;
+            }
         }
 
         private void checkBoxX1_CheckedChanged(object sender, EventArgs e)
@@ -96,11 +116,11 @@ namespace Ischool.Equip_Repair
                 DataTable dt;
                 if (checkBoxX1.Checked)
                 {
-                    dt = DAO.Case.GetCaseDataByCondition(dtStart.Value.ToString("yyyy/MM/dd"), dtEnd.Value.ToString("yyyy/MM/dd"), ((Status)cbxStatus.SelectedItem).IsClose);
+                    dt = DAO.Case.GetCaseDataByCondition(dtStart.Value.ToString("yyyy/MM/dd"), dtEnd.Value.ToString("yyyy/MM/dd"), ((Status)cbxStatus.SelectedItem).IsClose,cbxProgress.SelectedItem.ToString());
                 }
                 else
                 {
-                    dt = DAO.Case.GetCaseDataByCondition(null, null, ((Status)cbxStatus.SelectedItem).IsClose);
+                    dt = DAO.Case.GetCaseDataByCondition(null, null, ((Status)cbxStatus.SelectedItem).IsClose, cbxProgress.SelectedItem.ToString());
                 }
 
                 List<string> listCaseIDs = new List<string>();
@@ -184,6 +204,7 @@ namespace Ischool.Equip_Repair
                     int col = 0;
                     dgvrow.Cells[col++].Value = "" + row["uid"];
                     dgvrow.Cells[col++].Value = "" + row["is_close"] == "true" ? "結案" : "未結案";
+                    dgvrow.Cells[col++].Value = "" + row["fix_status"];
                     dgvrow.Cells[col++].Value = workerNames;
                     dgvrow.Cells[col].Tag = listMergeData;
                     dgvrow.Cells[col++].Value = mergeCaseIDs;
@@ -222,23 +243,20 @@ namespace Ischool.Equip_Repair
         #region 設定完工期限
         private void btnSetDeadline_Click(object sender, EventArgs e)
         {
-            if (this._isAdmin)
+            if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.SelectedRows[0].Index > -1)
             {
-                if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.SelectedRows[0].Index > -1)
-                {
-                    string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
-                    string deadline = "" + dataGridViewX1.SelectedRows[0].Cells[4].Value;
+                string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
+                string deadline = "" + dataGridViewX1.SelectedRows[0].Cells[4].Value;
 
-                    frmSetDeadline form = new frmSetDeadline(caseID, deadline);
-                    form.FormClosed += delegate
+                frmSetDeadline form = new frmSetDeadline(caseID, deadline);
+                form.FormClosed += delegate
+                {
+                    if (form.DialogResult == DialogResult.Yes)
                     {
-                        if (form.DialogResult == DialogResult.Yes)
-                        {
-                            ReloadDataGridView();
-                        }
-                    };
-                    form.ShowDialog();
-                }
+                        ReloadDataGridView();
+                    }
+                };
+                form.ShowDialog();
             }
         }
         #endregion
@@ -246,22 +264,19 @@ namespace Ischool.Equip_Repair
         #region 設定案件維修人員
         private void btnSetCaseWorker_Click(object sender, EventArgs e)
         {
-            if (this._isAdmin)
+            if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.SelectedRows[0].Index > -1)
             {
-                if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.SelectedRows[0].Index > -1)
-                {
-                    string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
+                string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
 
-                    frmSetCaseWorker form = new frmSetCaseWorker(caseID);
-                    form.FormClosed += delegate
+                frmSetCaseWorker form = new frmSetCaseWorker(caseID);
+                form.FormClosed += delegate
+                {
+                    if (form.DialogResult == DialogResult.Yes)
                     {
-                        if (form.DialogResult == DialogResult.Yes)
-                        {
-                            ReloadDataGridView();
-                        }
-                    };
-                    form.ShowDialog();
-                }
+                        ReloadDataGridView();
+                    }
+                };
+                form.ShowDialog();
             }
         }
         #endregion
@@ -269,21 +284,18 @@ namespace Ischool.Equip_Repair
         #region 合併工單
         private void btnMergeCase_Click(object sender, EventArgs e)
         {
-            if (this._isAdmin)
+            if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
             {
-                if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
+                DataRow row = (DataRow)dataGridViewX1.SelectedRows[0].Tag;
+                frmMergeCase form = new frmMergeCase(row);
+                form.FormClosed += delegate
                 {
-                    DataRow row = (DataRow)dataGridViewX1.SelectedRows[0].Tag;
-                    frmMergeCase form = new frmMergeCase(row);
-                    form.FormClosed += delegate
+                    if (form.DialogResult == DialogResult.Yes)
                     {
-                        if (form.DialogResult == DialogResult.Yes)
-                        {
-                            ReloadDataGridView();
-                        }
-                    };
-                    form.ShowDialog();
-                }
+                        ReloadDataGridView();
+                    }
+                };
+                form.ShowDialog();
             }
         }
         #endregion
@@ -291,23 +303,20 @@ namespace Ischool.Equip_Repair
         #region 取消合併工單
         private void btnCancelMerge_Click(object sender, EventArgs e)
         {
-            if (this._isAdmin)
+            if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
             {
-                if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
-                {
-                    string caseID = "" + ((DataRow)dataGridViewX1.SelectedRows[0].Tag)["uid"];
-                    List<DataRow> listData = (List<DataRow>)dataGridViewX1.SelectedRows[0].Cells[3].Tag;
+                string caseID = "" + ((DataRow)dataGridViewX1.SelectedRows[0].Tag)["uid"];
+                List<DataRow> listData = (List<DataRow>)dataGridViewX1.SelectedRows[0].Cells[3].Tag;
 
-                    frmCancelMergeCase form = new frmCancelMergeCase(caseID, listData);
-                    form.FormClosed += delegate
+                frmCancelMergeCase form = new frmCancelMergeCase(caseID, listData);
+                form.FormClosed += delegate
+                {
+                    if (form.DialogResult == DialogResult.Yes)
                     {
-                        if (form.DialogResult == DialogResult.Yes)
-                        {
-                            ReloadDataGridView();
-                        }
-                    };
-                    form.ShowDialog();
-                }
+                        ReloadDataGridView();
+                    }
+                };
+                form.ShowDialog();
             }
         }
         #endregion
@@ -315,46 +324,39 @@ namespace Ischool.Equip_Repair
         #region 工單結案
         private void btnCaseClose_Click(object sender, EventArgs e)
         {
-            if (this._isAdmin)
+            if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
             {
-                if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
+                string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
+                frmCaseOpenOrClose form = new frmCaseOpenOrClose(CaseStatus.IsClose, caseID);
+                form.Text = "工單結案";
+                form.FormClosed += delegate
                 {
-                    string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
-                    frmCaseOpenOrClose form = new frmCaseOpenOrClose(CaseStatus.IsClose, caseID);
-                    form.Text = "工單結案";
-                    form.FormClosed += delegate
+                    if (form.DialogResult == DialogResult.Yes)
                     {
-                        if (form.DialogResult == DialogResult.Yes)
-                        {
-                            ReloadDataGridView();
-                        }
-                    };
-                    form.ShowDialog();
-                }
-            }
-           
+                        ReloadDataGridView();
+                    }
+                };
+                form.ShowDialog();
+            }  
         }
         #endregion
 
         #region 工單開啟
         private void btnCaseOpen_Click(object sender, EventArgs e)
         {
-            if (this._isAdmin)
+            if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
             {
-                if (dataGridViewX1.SelectedRows.Count > 0 && dataGridViewX1.Rows[0].Index > -1)
+                string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
+                frmCaseOpenOrClose form = new frmCaseOpenOrClose(CaseStatus.UnClose, caseID);
+                form.Text = "工單開啟";
+                form.FormClosed += delegate
                 {
-                    string caseID = "" + dataGridViewX1.SelectedRows[0].Cells[0].Value;
-                    frmCaseOpenOrClose form = new frmCaseOpenOrClose(CaseStatus.UnClose, caseID);
-                    form.Text = "工單開啟";
-                    form.FormClosed += delegate
+                    if (form.DialogResult == DialogResult.Yes)
                     {
-                        if (form.DialogResult == DialogResult.Yes)
-                        {
-                            ReloadDataGridView();
-                        }
-                    };
-                    form.ShowDialog();
-                }
+                        ReloadDataGridView();
+                    }
+                };
+                form.ShowDialog();
             }
         }
         #endregion

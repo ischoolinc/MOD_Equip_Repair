@@ -237,6 +237,7 @@
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Data.pdb" />
     <Content Include="Library\K12.Data.xml" />
+    <None Include="Resources\clipboard_zoom_64.png" />
     <None Include="Resources\invoice_zoom_128.png" />
     <None Include="Resources\electricity_config_64.png" />
     <None Include="Resources\flux_diagram_config_128.png" />

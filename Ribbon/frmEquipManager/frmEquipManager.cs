@@ -37,6 +37,7 @@ namespace Ischool.Equip_Repair
                 TreeNode topNode = new TreeNode();
                 topNode.Name = null;
                 topNode.Text = string.Format("位置({0})", dt.Rows.Count);
+                //topNode.Expand();
                 treeView1.Nodes.Add(topNode);
 
                 TreeRootExist(dt);
@@ -67,6 +68,8 @@ namespace Ischool.Equip_Repair
 
                 CreateNode(dt, node);
             }
+
+            topNode.Expand();
         }
 
         private void CreateNode(DataTable dt, TreeNode node)
@@ -126,7 +129,7 @@ namespace Ischool.Equip_Repair
 
         private void btnUpdatePlace_Click(object sender, EventArgs e)
         {
-            if (treeView1.SelectedNode != null)
+            if (treeView1.SelectedNode != null && treeView1.SelectedNode.Name != "")
             {
                 string placeID = treeView1.SelectedNode.Name;
                 string parentID = "" + treeView1.SelectedNode.Parent.Name;
@@ -148,7 +151,7 @@ namespace Ischool.Equip_Repair
 
         private void btnDeletePlace_Click(object sender, EventArgs e)
         {
-            if (treeView1.SelectedNode != null && treeView1.SelectedNode.Name != null)
+            if (treeView1.SelectedNode != null && treeView1.SelectedNode.Name != "")
             {
                 string placeName = treeView1.SelectedNode.Text;
                 string placeID = treeView1.SelectedNode.Name;

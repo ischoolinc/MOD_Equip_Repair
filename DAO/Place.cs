@@ -77,7 +77,7 @@ FROM
         {
             string sql = string.Format(@"
 UPDATE $ischool.equip_repair.place SET
-    place.name = {0}
+    name = '{0}'
 WHERE
     uid = {1}
             ",placeName, placeID);
