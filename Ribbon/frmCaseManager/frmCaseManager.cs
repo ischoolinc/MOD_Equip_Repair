@@ -53,7 +53,7 @@ namespace Ischool.Equip_Repair
                 cbxProgress.Items.Add("--全部--");
                 cbxProgress.Items.Add("未處理");
                 cbxProgress.Items.Add("已維修");
-                cbxProgress.Items.Add("代料中");
+                cbxProgress.Items.Add("待料中");
                 cbxProgress.Items.Add("待廠商維修中");
                 cbxProgress.Items.Add("校內自行處理");
                 
