@@ -50,9 +50,9 @@ namespace Ischool.Equip_Repair
             //wb.Worksheets[0].Cells[1].PutValue("設施");
             //wb.Worksheets[0].Cells[2].PutValue("申報次數");
 
+            int rowIndex = 1;
             foreach (string key in dicCaseDataByKey.Keys)
-            {
-                int rowIndex = 1;
+            {    
                 int colIndex = 0;
                 string placeName = "" + dicCaseDataByKey[key][0]["place_name"];
                 string equipName = "" + dicCaseDataByKey[key][0]["equip_name"];
