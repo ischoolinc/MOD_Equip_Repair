@@ -33,6 +33,8 @@ namespace Ischool.Equip_Repair
 <Feature Code=""76809C59-7F04-4C79-BD32-55878FAB5534"" Permission=""Execute""/>
 <Feature Code=""A70B65AE-E5AD-4AA0-B5A8-EFFB2B2EBB22"" Permission=""Execute""/>
 <Feature Code=""4D8E9592-9599-47D9-879B-B59E0D852408"" Permission=""Execute""/>
+<Feature Code=""78E203BE-5653-447E-BA84-C99971FBBAF5"" Permission=""Execute""/>
+<Feature Code=""B4BA802B-15C9-4413-A445-2D855CC2C64F"" Permission=""Execute""/>
 </Permissions>
 ";
         #endregion
@@ -70,10 +72,14 @@ namespace Ischool.Equip_Repair
                 MotherForm.RibbonBarItems["設施報修", "基本設定"]["人員設定"].Size = RibbonBarButton.MenuButtonSize.Large;
                 MotherForm.RibbonBarItems["設施報修", "基本設定"]["管理位置與設施"].Image = Properties.Resources.flux_diagram_config_128;
                 MotherForm.RibbonBarItems["設施報修", "基本設定"]["管理位置與設施"].Size = RibbonBarButton.MenuButtonSize.Large;
-                MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["報表"].Image = Properties.Resources.Report;
-                MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["報表"].Size = RibbonBarButton.MenuButtonSize.Large;
-                MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["管理申報案件"].Image = Properties.Resources.invoice_zoom_128;
-                MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["管理申報案件"].Size = RibbonBarButton.MenuButtonSize.Large;
+                MotherForm.RibbonBarItems["設施報修", "資料統計"]["報表"].Image = Properties.Resources.Report;
+                MotherForm.RibbonBarItems["設施報修", "資料統計"]["報表"].Size = RibbonBarButton.MenuButtonSize.Large;
+                MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯出"].Image = Properties.Resources.Export_Image;
+                MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯出"].Size = RibbonBarButton.MenuButtonSize.Large;
+                MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯入"].Image = Properties.Resources.Import_Image;
+                MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯入"].Size = RibbonBarButton.MenuButtonSize.Large;
+                MotherForm.RibbonBarItems["設施報修", "案件管理"]["管理申報案件"].Image = Properties.Resources.invoice_zoom_128;
+                MotherForm.RibbonBarItems["設施報修", "案件管理"]["管理申報案件"].Size = RibbonBarButton.MenuButtonSize.Large;
 
                 #region 設定管理員
                 {
@@ -105,10 +111,30 @@ namespace Ischool.Equip_Repair
                 }
                 #endregion
 
+                #region 匯出位置與設施
+                {
+                    MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯出"]["匯出位置與設施資料"].Enable = Permissions.匯出位置與設施資料權限;
+                    MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯出"]["匯出位置與設施資料"].Click += delegate
+                    {
+                        (new frmExportPlaceEquip()).ShowDialog();
+                    };
+                }
+                #endregion
+
+                #region 匯入位置與設施
+                {
+                    MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯入"]["匯入位置與設施資料"].Enable = Permissions.匯入位置與設施資料權限;
+                    MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯入"]["匯入位置與設施資料"].Click += delegate
+                    {
+
+                    };
+                }
+                #endregion
+
                 #region 統計申報案件
                 {
-                    MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["報表"]["統計申報案件"].Enable = Permissions.統計申報案件權限;
-                    MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["報表"]["統計申報案件"].Click += delegate
+                    MotherForm.RibbonBarItems["設施報修", "資料統計"]["報表"]["統計申報案件"].Enable = Permissions.統計申報案件權限;
+                    MotherForm.RibbonBarItems["設施報修", "資料統計"]["報表"]["統計申報案件"].Click += delegate
                     {
                         (new frmSumCase()).ShowDialog();
                     };
@@ -117,8 +143,8 @@ namespace Ischool.Equip_Repair
 
                 #region 管理申報案件
                 {
-                    MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["管理申報案件"].Enable = Permissions.管理申報案件權限;
-                    MotherForm.RibbonBarItems["設施報修", "案件管理/案件統計"]["管理申報案件"].Click += delegate
+                    MotherForm.RibbonBarItems["設施報修", "案件管理"]["管理申報案件"].Enable = Permissions.管理申報案件權限;
+                    MotherForm.RibbonBarItems["設施報修", "案件管理"]["管理申報案件"].Click += delegate
                     {
                         (new frmCaseManager()).ShowDialog();
                     };
@@ -132,6 +158,8 @@ namespace Ischool.Equip_Repair
                     detail.Add(new RibbonFeature(Permissions.設定管理員, "設定管理員"));
                     detail.Add(new RibbonFeature(Permissions.設定維修人員, "設定維修人員"));
                     detail.Add(new RibbonFeature(Permissions.管理位置與設施, "管理位置與設施"));
+                    detail.Add(new RibbonFeature(Permissions.匯出位置與設施資料, "匯出位置與設施資料"));
+                    detail.Add(new RibbonFeature(Permissions.匯入位置與設施資料, "匯入位置與設施資料"));
                     detail.Add(new RibbonFeature(Permissions.統計申報案件, "統計申報案件"));
                     detail.Add(new RibbonFeature(Permissions.管理申報案件, "管理申報案件"));
                 }

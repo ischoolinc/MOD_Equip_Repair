@@ -136,6 +136,15 @@
     <Compile Include="Ribbon\frmEquipManager\frmPlace.Designer.cs">
       <DependentUpon>frmPlace.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ribbon\frmExportPlaceEquip\frmExportPlaceEquip.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ribbon\frmExportPlaceEquip\frmExportPlaceEquip.Designer.cs">
+      <DependentUpon>frmExportPlaceEquip.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ribbon\frmImportPlaceEuip\EquipRecord.cs" />
+    <Compile Include="Ribbon\frmImportPlaceEuip\ImportPlaceEquipWizard.cs" />
+    <Compile Include="Ribbon\frmImportPlaceEuip\PlaceRecord.cs" />
     <Compile Include="Ribbon\frmSumCaseReport\frmSumCase.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +168,21 @@
   <ItemGroup>
     <Reference Include="Aspose.Cells_201402">
       <HintPath>Library\Aspose.Cells_201402.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.DocumentValidator, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.DocumentValidator.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Import, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Import.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Campus.Validator, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Library\Campus.Validator.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="CefSharp.WinForms, Version=57.0.0.0, Culture=neutral, PublicKeyToken=40c4b6fc221f4138, processorArchitecture=x86">
@@ -217,6 +241,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Library\Campus.DocumentValidator.dll" />
+    <Content Include="Library\Campus.DocumentValidator.xml" />
+    <Content Include="Library\Campus.Import.dll" />
+    <Content Include="Library\Campus.Import.xml" />
+    <Content Include="Library\Campus.Validator.dll" />
     <Content Include="Library\CefSharp.WinForms.dll" />
     <Content Include="Library\DevComponents.DotNetBar2.dll" />
     <Content Include="Library\FISCA.Authentication.dll" />
@@ -237,6 +266,10 @@
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Data.pdb" />
     <Content Include="Library\K12.Data.xml" />
+    <None Include="Resources\EquipmentValidate.xml" />
+    <None Include="Resources\wizard1.BackgroundImage.png" />
+    <None Include="Resources\Import.Image.png" />
+    <None Include="Resources\Export.Image.png" />
     <None Include="Resources\clipboard_zoom_64.png" />
     <None Include="Resources\invoice_zoom_128.png" />
     <None Include="Resources\electricity_config_64.png" />
@@ -296,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\frmEquipManager\frmPlace.resx">
       <DependentUpon>frmPlace.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ribbon\frmExportPlaceEquip\frmExportPlaceEquip.resx">
+      <DependentUpon>frmExportPlaceEquip.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Ribbon\frmSumCaseReport\frmSumCase.resx">
       <DependentUpon>frmSumCase.cs</DependentUpon>
