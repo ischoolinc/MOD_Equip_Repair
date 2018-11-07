@@ -31,6 +31,6 @@ namespace Ischool.Equip_Repair
         /// <summary>
         /// 建立者帳號
         /// </summary>
-        public string CreateBy { get; set; }
+        public string CreatedBy { get; set; }
     }
 }

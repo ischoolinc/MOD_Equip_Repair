@@ -126,7 +126,7 @@ namespace Ischool.Equip_Repair
                     MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯入"]["匯入位置與設施資料"].Enable = Permissions.匯入位置與設施資料權限;
                     MotherForm.RibbonBarItems["設施報修", "資料統計"]["匯入"]["匯入位置與設施資料"].Click += delegate
                     {
-
+                        (new ImportPlaceEquipWizard()).Execute();
                     };
                 }
                 #endregion

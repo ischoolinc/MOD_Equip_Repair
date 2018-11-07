@@ -33,7 +33,6 @@
             System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("位置名稱(階層3)");
             System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("設施名稱");
             System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("設施財產編號");
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("設施損壞原因");
             this.wizard1 = new DevComponents.DotNetBar.Wizard();
             this.wizardPage1 = new DevComponents.DotNetBar.WizardPage();
             this.ckbxSelectAll = new System.Windows.Forms.CheckBox();
@@ -166,15 +165,12 @@
             listViewItem4.StateImageIndex = 1;
             listViewItem5.Checked = true;
             listViewItem5.StateImageIndex = 1;
-            listViewItem6.Checked = true;
-            listViewItem6.StateImageIndex = 1;
             this.listViewEx1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
             listViewItem2,
             listViewItem3,
             listViewItem4,
-            listViewItem5,
-            listViewItem6});
+            listViewItem5});
             this.listViewEx1.Location = new System.Drawing.Point(12, 38);
             this.listViewEx1.Name = "listViewEx1";
             this.listViewEx1.Size = new System.Drawing.Size(460, 248);

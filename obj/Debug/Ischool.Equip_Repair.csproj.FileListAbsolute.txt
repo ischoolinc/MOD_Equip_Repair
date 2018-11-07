@@ -39,5 +39,4 @@ D:\Users\小金\Documents\github_ischool\MOD_Equip_Repair\obj\Debug\Ischool.Equi
 D:\Users\小金\Documents\github_ischool\MOD_Equip_Repair\obj\Debug\Ischool.Equip_Repair.csproj.CoreCompileInputs.cache
 D:\Users\小金\Documents\github_ischool\MOD_Equip_Repair\obj\Debug\Ischool.Equip_Repair.dll
 D:\Users\小金\Documents\github_ischool\MOD_Equip_Repair\obj\Debug\Ischool.Equip_Repair.pdb
-D:\Users\小金\Documents\github_ischool\MOD_Equip_Repair\obj\Debug\Ischool.Equip_Repair.csprojResolveAssemblyReference.cache
 D:\Users\小金\Documents\github_ischool\MOD_Equip_Repair\obj\Debug\Ischool.Equip_Repair.frmExportPlaceEquip.resources

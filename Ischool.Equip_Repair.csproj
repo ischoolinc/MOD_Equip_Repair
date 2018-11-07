@@ -266,7 +266,7 @@
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Data.pdb" />
     <Content Include="Library\K12.Data.xml" />
-    <None Include="Resources\EquipmentValidate.xml" />
+    <None Include="Resources\EquipRepairValidate.xml" />
     <None Include="Resources\wizard1.BackgroundImage.png" />
     <None Include="Resources\Import.Image.png" />
     <None Include="Resources\Export.Image.png" />

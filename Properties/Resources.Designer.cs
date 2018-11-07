@@ -106,20 +106,17 @@ namespace Ischool.Equip_Repair.Properties {
         ///&lt;ValidateRule&gt;
         ///  &lt;DuplicateDetection&gt;
         ///    &lt;Detector Name=&quot;PrimaryKey&quot;&gt;
-        ///      &lt;Field Name=&quot;財產編號&quot;/&gt;
         ///    &lt;/Detector&gt;
         ///  &lt;/DuplicateDetection&gt;
         ///  &lt;FieldList&gt;
-        ///    &lt;Field Required=&quot;True&quot; Name=&quot;設備名稱&quot;&gt;
-        ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「設備名稱」不允許空白。&quot; ErrorType=&quot;Error&quot; Validator=&quot;不可空白&quot; When=&quot;&quot;/&gt;
+        ///    &lt;Field Required=&quot;True&quot; Name=&quot;位置名稱(階層1)&quot; Description=&quot;位置名稱(階層1)名稱為鍵值必填&quot;&gt;
+        ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「位置名稱(階層1)」不允許空白。&quot; ErrorType=&quot;Error&quot; Validator=&quot;不可空白&quot; When=&quot;&quot;/&gt;
         ///    &lt;/Field&gt;
-        ///    &lt;Field Required=&quot;False&quot; Name=&quot;類別&quot; Description=&quot;設備類別&quot;&gt;
-        ///    &lt;/Field&gt;
-        ///    &lt;Field Required= [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        ///    &lt;Field Required=&quot;False&quot; Name=&quot;位置名稱(階層2)&quot; EmptyAlsoValidate=&quot;False&quot; Descripti [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
-        internal static string EquipmentValidate {
+        internal static string EquipRepairValidate {
             get {
-                return ResourceManager.GetString("EquipmentValidate", resourceCulture);
+                return ResourceManager.GetString("EquipRepairValidate", resourceCulture);
             }
         }
         

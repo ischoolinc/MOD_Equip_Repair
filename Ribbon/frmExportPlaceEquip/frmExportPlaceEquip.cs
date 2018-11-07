@@ -59,7 +59,6 @@ SELECT
 	, place3.level AS grandfather_level
 	, equip.name AS equip_name
     , equip.property_no
-	, reason.reason
 FROM
     $ischool.equip_repair.place AS target_place
     LEFT OUTER JOIN $ischool.equip_repair.place AS place2
@@ -68,8 +67,6 @@ FROM
         ON place3.uid = place2.parent_id
     LEFT OUTER JOIN $ischool.equip_repair.equip AS equip
         ON equip.ref_place_id = target_place.uid
-    LEFT OUTER JOIN $ischool.equip_repair.broken_reason AS reason
-    	ON reason.ref_equip_id = equip.uid
 ORDER BY
 	target_place_level
 
@@ -135,9 +132,6 @@ ORDER BY
                                         break;
                                     case "設施財產編號":
                                         report.Worksheets[0].Cells[rowIndex, col].PutValue("" + row["property_no"]);
-                                        break;
-                                    case "設施損壞原因":
-                                        report.Worksheets[0].Cells[rowIndex, col].PutValue("" + row["reason"]);
                                         break;
                                     default:
                                         break;

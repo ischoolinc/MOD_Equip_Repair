@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<?xml-stylesheet type="text/xsl" href="format.xsl" ?>
+<ValidateRule>
+  <DuplicateDetection>
+    <Detector Name="PrimaryKey">
+      <Field Name="位置名稱(階層1)"/>
+      <Field Name="位置名稱(階層2)"/>
+      <Field Name="位置名稱(階層3)"/>
+      <Field Name="設施名稱"/>
+    </Detector>
+  </DuplicateDetection>
+  <FieldList>
+    <Field Required="True" Name="位置名稱(階層1)" Description="位置名稱(階層1)名稱為鍵值必填">
+      <Validate AutoCorrect="False" Description="「位置名稱(階層1)」不允許空白。" ErrorType="Error" Validator="不可空白" When=""/>
+    </Field>
+    <Field Required="False" Name="位置名稱(階層2)" EmptyAlsoValidate="False" Description=""/>
+    <Field Required="False" Name="位置名稱(階層3)" EmptyAlsoValidate="False" Description=""/>
+    <Field Required="False" Name="設施名稱" EmptyAlsoValidate="False" Description=""/>
+    <Field Required="False" Name="設施財產編號" EmptyAlsoValidate="False" Description=""/>
+  </FieldList>
+  <ValidatorList>
+    <FieldValidator Name="不可空白" Type="CHECKSTRING"/>
+    <FieldValidator Name="學期列舉" Type="Enumeration">
+      <Item Value="1" />
+      <Item Value="2"/>
+    </FieldValidator>
+  </ValidatorList>
+
+  <RowValidate>
+  </RowValidate>
+  <ConditionList/>
+</ValidateRule>
+
