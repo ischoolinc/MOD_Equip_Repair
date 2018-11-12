@@ -36,8 +36,8 @@ SELECT
 FROM
     $ischool.equip_repair.place
 WHERE
-    parent_id = {0}
-            ",parentID == "" ? "null" : parentID);
+    parent_id {0}
+            ",parentID == "" ? "IS NULL" : " = " + parentID);
 
             return _qh.Select(sql);
         }

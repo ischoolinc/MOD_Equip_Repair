@@ -68,8 +68,9 @@ FROM
     LEFT OUTER JOIN $ischool.equip_repair.equip AS equip
         ON equip.ref_place_id = target_place.uid
 ORDER BY
-	target_place_level
-
+    target_place.level
+    , target_place.name
+    , equip.name
 ";
                 QueryHelper qh = new QueryHelper();
                 DataTable dt = qh.Select(sql);

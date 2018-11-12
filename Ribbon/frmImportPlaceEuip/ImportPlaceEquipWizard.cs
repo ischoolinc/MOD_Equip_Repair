@@ -87,8 +87,6 @@ namespace Ischool.Equip_Repair
             // 2 解析設施資料(將系統不存在的位置設施資料做新增、存在的做更新)
             ParsePlaceEquipData(Rows);
 
-            // 3 設備資料存入資料庫
-
             return "";
         }
 
