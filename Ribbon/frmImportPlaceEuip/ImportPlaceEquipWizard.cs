@@ -196,7 +196,7 @@ SELECT
     , {2}::BIGINT AS parent_id
     , '{3}'::TIMESTAMP AS create_time
     , '{4}'::TEXT AS created_by 
-                    ", place.Name, place.Level, place.ParentID, place.CreateTime.ToString("yyyy/MM/dd"), place.CreateBy);
+                    ", place.Name, place.Level, place.ParentID == null ? "null" : place.ParentID, place.CreateTime.ToString("yyyy/MM/dd"), place.CreateBy);
 
                         listDataRow.Add(data);
                     }
@@ -232,6 +232,8 @@ FROM
                 #endregion
             }
 
+            // 取得位置資料
+            GetPlaceData();
         }
 
         private void GetPlaceEquipData()

@@ -88,13 +88,28 @@ WHERE
         public static void DeletePlaceDataByID(string placeID)
         {
             string sql = string.Format(@"
+WITH target_data AS(
+    SELECT 
+	n1.uid AS n1_uid
+	, n2.uid AS n2_uid
+	, n3.uid As n3_uid
+FROM
+	$ischool.equip_repair.place AS n1
+	LEFT OUTER JOIN $ischool.equip_repair.place AS n2
+		ON n2.parent_id = n1.uid
+	LEFT OUTER JOIN $ischool.equip_repair.place AS n3
+		ON n3.parent_id = n2.uid
+WHERE
+	n1.uid = {0}
+)
 DELETE
 FROM
     $ischool.equip_repair.place
 WHERE
-    uid = {0}
-    OR parent_id = {0}
-            ",placeID);
+    uid = (SELECT n1_uid FROM target_data)
+    OR uid = (SELECT n2_uid FROM target_data)
+    OR uid = (SELECT n3_uid FROM target_data)
+            ", placeID);
 
             _up.Execute(sql);
         }
