@@ -66,7 +66,19 @@ namespace Ischool.Equip_Repair
                 ModuleRole role = ModuleRole.Instance;
 
                 // 設施報修模組
-                MotherForm.AddPanel(EquipRepairPanel.Instance);
+
+                //2021-12-15 Cynthia 因原先操作指南無法在x64版本上作為背景載入，故參考俊威的意見，將操作指南另外用一個button點擊開啟。
+                //MotherForm.AddPanel(EquipRepairPanel.Instance);
+                MotherForm.RibbonBarItems["設施報修", "使用說明"]["操作指南"].Image = Properties.Resources._03;
+                MotherForm.RibbonBarItems["設施報修", "使用說明"]["操作指南"].Size = RibbonBarButton.MenuButtonSize.Large;
+                #region 操作指南
+                {
+                    MotherForm.RibbonBarItems["設施報修", "使用說明"]["操作指南"].Click += delegate
+                    {
+                        System.Diagnostics.Process.Start("https://sites.google.com/ischool.com.tw/equipment-repair/%E9%A6%96%E9%A0%81");
+                    };
+                }
+                #endregion
 
                 MotherForm.RibbonBarItems["設施報修", "基本設定"]["人員設定"].Image = Properties.Resources.foreign_language_config_64;
                 MotherForm.RibbonBarItems["設施報修", "基本設定"]["人員設定"].Size = RibbonBarButton.MenuButtonSize.Large;

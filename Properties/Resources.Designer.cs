@@ -19,7 +19,7 @@ namespace Ischool.Equip_Repair.Properties {
     // 類別透過 ResGen 或 Visual Studio 這類工具。
     // 若要加入或移除成員，請編輯您的 .ResX 檔，然後重新執行 ResGen
     // (利用 /str 選項)，或重建您的 VS 專案。
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -57,6 +57,16 @@ namespace Ischool.Equip_Repair.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   查詢類型 System.Drawing.Bitmap 的當地語系化資源。
+        /// </summary>
+        internal static System.Drawing.Bitmap _03 {
+            get {
+                object obj = ResourceManager.GetObject("_03", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -106,13 +116,15 @@ namespace Ischool.Equip_Repair.Properties {
         ///&lt;ValidateRule&gt;
         ///  &lt;DuplicateDetection&gt;
         ///    &lt;Detector Name=&quot;PrimaryKey&quot;&gt;
+        ///      &lt;Field Name=&quot;位置名稱(階層1)&quot;/&gt;
+        ///      &lt;Field Name=&quot;位置名稱(階層2)&quot;/&gt;
+        ///      &lt;Field Name=&quot;位置名稱(階層3)&quot;/&gt;
+        ///      &lt;Field Name=&quot;設施名稱&quot;/&gt;
         ///    &lt;/Detector&gt;
         ///  &lt;/DuplicateDetection&gt;
         ///  &lt;FieldList&gt;
         ///    &lt;Field Required=&quot;True&quot; Name=&quot;位置名稱(階層1)&quot; Description=&quot;位置名稱(階層1)名稱為鍵值必填&quot;&gt;
-        ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「位置名稱(階層1)」不允許空白。&quot; ErrorType=&quot;Error&quot; Validator=&quot;不可空白&quot; When=&quot;&quot;/&gt;
-        ///    &lt;/Field&gt;
-        ///    &lt;Field Required=&quot;False&quot; Name=&quot;位置名稱(階層2)&quot; EmptyAlsoValidate=&quot;False&quot; Descripti [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
+        ///      &lt;Validate AutoCorrect=&quot;False&quot; Description=&quot;「位置名稱(階層1)」不允許空白。&quot; ErrorType=&quot;Er [字串的其餘部分已遭截斷]&quot;; 的當地語系化字串。
         /// </summary>
         internal static string EquipRepairValidate {
             get {

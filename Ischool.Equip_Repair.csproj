@@ -266,6 +266,7 @@
     <Content Include="Library\K12.Data.dll" />
     <Content Include="Library\K12.Data.pdb" />
     <Content Include="Library\K12.Data.xml" />
+    <Content Include="Resources\03.png" />
     <None Include="Resources\EquipRepairValidate.xml">
       <SubType>Designer</SubType>
     </None>
